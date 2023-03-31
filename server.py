@@ -20,7 +20,7 @@ config.addTransport(
 )
 
 # Configure community here
-config.addV1System(snmpEngine, 'my-area', 'cs1')
+config.addV1System(snmpEngine, 'cs1', 'cs1')
 
 
 def cbFun(snmpEngine, stateReference, contextEngineId, contextName,
@@ -39,3 +39,12 @@ try:
 except:
     snmpEngine.transportDispatcher.closeDispatcher()
     raise
+
+# iso(1) identified-organization(3) dod(6) internet(1) snmpV2(6) snmpModules(3) snmpCommunityMIB(18) snmpCommunityMIBObjects(1) snmpTrapAddress(3)
+# iso(1) identified-organization(3) dod(6) internet(1) snmpV2(6) snmpModules(3) snmpCommunityMIB(18) snmpCommunityMIBObjects(1) snmpTrapCommunity(4)
+# Received new Trap message
+# 1.3.6.1.2.1.1.3.0 = 217340 sysUpTimeInstance
+# 1.3.6.1.6.3.1.1.4.1.0 = 1.3.6.1.2.1.17.0.2 topologyChange NOTIFICATION-TYPE
+# 1.3.6.1.6.3.18.1.3.0 = 10.0.5.21 Trap Address
+# 1.3.6.1.6.3.18.1.4.0 = cs1 Community String
+# 1.3.6.1.6.3.1.1.4.3.0 = 1.3.6.1.2.1.17 dot1dBridge MODULE-IDENTITY
