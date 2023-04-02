@@ -38,29 +38,37 @@ config.addTransport(
 config.addV1System(snmpEngine, 'cs1', 'cs1')
 
 
-snmp_trap = {
-    "system_up_time_instance": "",
-    "notification_type": "",
-    "source_address": "",
-    "community": "",
-    "module_id": ""
-}
-
-
 def cbFun(snmpEngine, stateReference, contextEngineId, contextName,
           varBinds, cbCtx):
     print("Received new Trap message")
     varBinds = [rfc1902.ObjectType(rfc1902.ObjectIdentity(x[0]), x[1]).resolveWithMib(mibViewController)
                 for x in varBinds]
+    snmp_trap = {
+        "system_up_time_instance": "",
+        "notification_type": "",
+        "source_address": "",
+        "community": "",
+        "module_id": "",
+        "message": ""
+    }
     for i, (name, val) in enumerate(varBinds):
-        # Get the name and value as strings
         oid = name.prettyPrint()
         value = val.prettyPrint()
-        # Map the value to the corresponding key in the snmp_values dictionary
-        if i < len(snmp_trap):
-            snmp_trap[list(snmp_trap.keys())[i]] = value
-        print('%s = %s' % (oid, value))
-
+        if i == 0:
+            snmp_trap["system_up_time_instance"] = value
+        elif i == 1:
+            snmp_trap["notification_type"] = value
+        elif i == 2:
+            snmp_trap["source_address"] = value
+        elif i == 3:
+            snmp_trap["community"] = value
+        elif i == 4:
+            snmp_trap["module_id"] = value
+        else:
+            if snmp_trap["message"]:
+                snmp_trap["message"] += " "
+            snmp_trap["message"] += f"{value}"
+    print(snmp_trap)
     mongoURL = os.environ["MONGOURL"]
     snmp_trap["created_at"] = datetime.utcnow()
     client = MongoClient(f"mongodb://{mongoURL}/")
