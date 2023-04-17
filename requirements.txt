@@ -1,0 +1,6 @@
+discord_webhook==1.1.0
+pymongo==4.3.3
+pysmi==0.3.4
+pysnmp==4.4.12
+python-dotenv==1.0.0
+pysnmp-mibs
