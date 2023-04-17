@@ -41,7 +41,6 @@ config:
 service:
   type: NodePort
   port: 162
-  targetPort: 162
   nodePort: 30162
   protocol: UDP
 
