@@ -24,10 +24,10 @@ echo "<13>Feb  5 17:32:18 mymachine myproc[10]: %% It's time to make the do-nuts
 Each incoming SNMP trap is stored in its own collection within the snmp database, the trap data is stored in the following format:
 ```
 {
-    "system_up_time_instance": <system up time instance>,
-    "source_address": <source IP address>,
-    "module_id": <trap OID>,
-    "message": <trap message>,
+    "system_up_time_instance": <system_up_time_instance>,
+    "source_address": <source_ip_address>,
+    "module_id": <trap_oid>,
+    "message": <trap_message>,
 }
 ```
 
