@@ -14,12 +14,6 @@ To run this application, follow these steps:
 * Run the application using `python server.py`
 * The application will listen on port 514 for syslog messages
 
-## Usage
-Send a Syslog message to the server by running the following command in a separate terminal window:
-```
-echo "<13>Feb  5 17:32:18 mymachine myproc[10]: %% It's time to make the do-nuts." | nc -w 1 -u localhost 514
-```
-
 ## MongoDB Storage
 Each incoming SNMP trap is stored in its own collection within the snmp database, the trap data is stored in the following format:
 ```
