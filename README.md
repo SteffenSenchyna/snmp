@@ -12,16 +12,16 @@ To run this application, follow these steps:
 * Clone this repository
 * Install the required packages using `pip install -r requirements.txt`
 * Run the application using `python server.py`
-* The application will listen on port 514 for syslog messages
+* The application will listen on port 162 for SNMP traps
 
 ## MongoDB Storage
 Each incoming SNMP trap is stored in its own collection within the snmp database, the trap data is stored in the following format:
 ```
 {
-    "system_up_time_instance": <system_up_time_instance>,
-    "source_address": <source_ip_address>,
-    "module_id": <trap_oid>,
-    "message": <trap_message>,
+    "system_up_time_instance": <System Up Time Instance>,
+    "source_address": <Source IP Address>,
+    "module_id": <Trap OID>,
+    "message": <Trap Message>,
 }
 ```
 
